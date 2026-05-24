@@ -23,31 +23,37 @@ final class DataSeederTests: XCTestCase {
         return try context.count(for: request)
     }
 
-    func testSeedIfNeededCreatesSixProducts() throws {
-        DataSeeder.seedIfNeeded(in: context)
+    func testSeedProductsCreatesSixProducts() throws {
+        DataSeeder.seedProducts(in: context)
+        try context.save()
         XCTAssertEqual(try count("CDProduct"), 6)
     }
 
-    func testSeedIfNeededCreatesThreeStores() throws {
-        DataSeeder.seedIfNeeded(in: context)
+    func testSeedStoresCreatesThreeStores() throws {
+        DataSeeder.seedStores(in: context)
+        try context.save()
         XCTAssertEqual(try count("CDStore"), 3)
     }
 
-    func testSeedIfNeededCreatesThreeBaristas() throws {
-        DataSeeder.seedIfNeeded(in: context)
+    func testSeedBaristasCreatesThreeBaristas() throws {
+        DataSeeder.seedBaristas(in: context)
+        try context.save()
         XCTAssertEqual(try count("CDBarista"), 3)
     }
 
-    func testSeedIfNeededIsIdempotent() throws {
-        DataSeeder.seedIfNeeded(in: context)
-        DataSeeder.seedIfNeeded(in: context)
+    func testSeedAllEntitiesTogether() throws {
+        DataSeeder.seedProducts(in: context)
+        DataSeeder.seedStores(in: context)
+        DataSeeder.seedBaristas(in: context)
+        try context.save()
         XCTAssertEqual(try count("CDProduct"), 6)
         XCTAssertEqual(try count("CDStore"), 3)
         XCTAssertEqual(try count("CDBarista"), 3)
     }
 
     func testProductSortOrdersAreSequential() throws {
-        DataSeeder.seedIfNeeded(in: context)
+        DataSeeder.seedProducts(in: context)
+        try context.save()
         let request = NSFetchRequest<NSManagedObject>(entityName: "CDProduct")
         request.sortDescriptors = [NSSortDescriptor(key: "sortOrder", ascending: true)]
         let products = try context.fetch(request)

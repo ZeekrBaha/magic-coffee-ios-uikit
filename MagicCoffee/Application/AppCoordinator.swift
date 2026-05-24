@@ -3,6 +3,7 @@ import UIKit
 final class AppCoordinator: Coordinator {
     var navigationController: UINavigationController
     var childCoordinators: [any Coordinator] = []
+    var parent: (any Coordinator)? = nil
     private let window: UIWindow
 
     init(window: UIWindow) {

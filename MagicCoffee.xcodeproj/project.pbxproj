@@ -10,19 +10,24 @@
 		045BF3100512B4E3D09C90AD /* UIColor+DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39B7FFBD0ED24BC08CDBDEA /* UIColor+DesignSystem.swift */; };
 		0F2C02E134E24351D8194809 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DD814BCBA176B420609928 /* AppDelegate.swift */; };
 		25FA751D0A04F8DE79E87930 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E2F62272C1AC1FD1AEF823 /* SceneDelegate.swift */; };
+		49DF3E06D78841144905CDBF /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 975F21989C0BC1F22D6A26D7 /* Poppins-Bold.ttf */; };
 		73F71F7CBBEC6434502B663D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7B11B8BF76F77B5E8A5D1 /* CoreDataStack.swift */; };
 		8114F2770341F11AAC8C4BF3 /* DataSeederTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C6DA62F67D46292E05E525 /* DataSeederTests.swift */; };
 		8B2A4EA5A8CFF0E5EA69667E /* UIFont+DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1508A097A67A4DFC3791A045 /* UIFont+DesignSystem.swift */; };
+		939BFB3DB14D301DB03399B7 /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31F0862025A97EAFC4E2BF73 /* DMSans-Medium.ttf */; };
 		9CDA247BCBAABD42B7588512 /* MagicCoffeeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437742AA234004CD9D62878C /* MagicCoffeeUITests.swift */; };
 		9D4C3E07E3049B23E7CFFB7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBC8BA25AFBB040EC98F0359 /* Assets.xcassets */; };
 		9FBD9F9DCDA8E67DFC8E4671 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921F3C2FD75B541EB6E0ECB /* ImageFileManager.swift */; };
+		A5DACB77258CFE751546FB9A /* DMSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1BF5407CF03E9956BF052ACB /* DMSans-Regular.ttf */; };
 		A8FBFFD43098E851AE4AB1CA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D7F76C836D8C2CFB03EFF9 /* Coordinator.swift */; };
 		AE46A669C0114CCAE49D3F6C /* MagicCoffee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77BD71DDA1E55353537B2556 /* MagicCoffee.xcdatamodeld */; };
 		B61DA88AA0A7601BEBF75F8C /* TestCoreDataSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9080B162970F5CB527E9B9C /* TestCoreDataSupport.swift */; };
 		BECAD883DDEDB0BC13DD80BC /* UIViewController+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = A518779BFDA07D3FFE5833F9 /* UIViewController+Add.swift */; };
 		C1D9BB08D7249FA43A59A430 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF11BED1D9029305D56D8DA /* BaseViewModel.swift */; };
+		DD07E7B2AD7795FC17F19E66 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E421BA4EEEBB82D169B1BC90 /* Poppins-Medium.ttf */; };
 		E38484CFA2620D1269609550 /* CoreDataStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF14ED7B01DB615335B182B1 /* CoreDataStackTests.swift */; };
 		F276C4DB0D611ADA111BEC8E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F8DAC07BD6B7F724E68D4 /* AppCoordinator.swift */; };
+		F77FE3341959684485333FBF /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CA969297787C0AC57619409 /* Poppins-Regular.ttf */; };
 		F854CA1FC4E963C468CD6B1A /* DataSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6FE601C936C1B78048F67 /* DataSeeder.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,20 +52,25 @@
 		02DD814BCBA176B420609928 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05E2F62272C1AC1FD1AEF823 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1508A097A67A4DFC3791A045 /* UIFont+DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+DesignSystem.swift"; sourceTree = "<group>"; };
+		1BF5407CF03E9956BF052ACB /* DMSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSans-Regular.ttf"; sourceTree = "<group>"; };
+		1CA969297787C0AC57619409 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		1D1D7BAF7D89EF3AC7ADA4C4 /* MagicCoffeeTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MagicCoffeeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EC6FE601C936C1B78048F67 /* DataSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSeeder.swift; sourceTree = "<group>"; };
 		2EC7B11B8BF76F77B5E8A5D1 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		31F0862025A97EAFC4E2BF73 /* DMSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSans-Medium.ttf"; sourceTree = "<group>"; };
 		3FC60605CB42E80272EE3A2C /* MagicCoffee.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MagicCoffee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437742AA234004CD9D62878C /* MagicCoffeeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicCoffeeUITests.swift; sourceTree = "<group>"; };
 		4EF11BED1D9029305D56D8DA /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		71D7F76C836D8C2CFB03EFF9 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		937F8DAC07BD6B7F724E68D4 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		975F21989C0BC1F22D6A26D7 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		A518779BFDA07D3FFE5833F9 /* UIViewController+Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Add.swift"; sourceTree = "<group>"; };
 		A921F3C2FD75B541EB6E0ECB /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 		B39B7FFBD0ED24BC08CDBDEA /* UIColor+DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+DesignSystem.swift"; sourceTree = "<group>"; };
 		C0ED367B49E56DFBC393BEEA /* MagicCoffee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MagicCoffee.xcdatamodel; sourceTree = "<group>"; };
 		C873A0DDD9CF9213B92643A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DBC8BA25AFBB040EC98F0359 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E421BA4EEEBB82D169B1BC90 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		E5FE3AFE066886D1F7A7B590 /* MagicCoffeeUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MagicCoffeeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7C6DA62F67D46292E05E525 /* DataSeederTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSeederTests.swift; sourceTree = "<group>"; };
 		EF14ED7B01DB615335B182B1 /* CoreDataStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackTests.swift; sourceTree = "<group>"; };
@@ -121,6 +131,7 @@
 			children = (
 				DBC8BA25AFBB040EC98F0359 /* Assets.xcassets */,
 				C873A0DDD9CF9213B92643A3 /* Info.plist */,
+				AB066905CEF7D28B74D3DE64 /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -162,6 +173,18 @@
 				4EF11BED1D9029305D56D8DA /* BaseViewModel.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		AB066905CEF7D28B74D3DE64 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				31F0862025A97EAFC4E2BF73 /* DMSans-Medium.ttf */,
+				1BF5407CF03E9956BF052ACB /* DMSans-Regular.ttf */,
+				975F21989C0BC1F22D6A26D7 /* Poppins-Bold.ttf */,
+				E421BA4EEEBB82D169B1BC90 /* Poppins-Medium.ttf */,
+				1CA969297787C0AC57619409 /* Poppins-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		B56E104F85B24F430C87A7F2 /* CoreData */ = {
@@ -309,6 +332,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D4C3E07E3049B23E7CFFB7E /* Assets.xcassets in Resources */,
+				939BFB3DB14D301DB03399B7 /* DMSans-Medium.ttf in Resources */,
+				A5DACB77258CFE751546FB9A /* DMSans-Regular.ttf in Resources */,
+				49DF3E06D78841144905CDBF /* Poppins-Bold.ttf in Resources */,
+				DD07E7B2AD7795FC17F19E66 /* Poppins-Medium.ttf in Resources */,
+				F77FE3341959684485333FBF /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,6 +21,9 @@ targets:
         excludes:
           - "**/*.md"
           - "**/.gitkeep"
+    resources:
+      - MagicCoffee/Resources/Assets.xcassets
+      - MagicCoffee/Resources/Fonts
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.baha.magiccoffee
@@ -50,6 +53,12 @@ targets:
                 UISceneDelegateClassName: "$(PRODUCT_MODULE_NAME).SceneDelegate"
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
+        UIAppFonts:
+          - Poppins-Regular.ttf
+          - Poppins-Medium.ttf
+          - Poppins-Bold.ttf
+          - DMSans-Regular.ttf
+          - DMSans-Medium.ttf
 
   MagicCoffeeTests:
     type: bundle.unit-test

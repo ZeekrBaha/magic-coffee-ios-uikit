@@ -1,13 +1,21 @@
 import CoreData
 
 final class DataSeeder {
-    static func seedIfNeeded(in context: NSManagedObjectContext) {
+    static func seedIfNeeded() async {
         guard !UserDefaults.standard.bool(forKey: "mc_seeded") else { return }
-        seedProducts(in: context)
-        seedStores(in: context)
-        seedBaristas(in: context)
-        try? context.save()
-        UserDefaults.standard.set(true, forKey: "mc_seeded")
+        do {
+            try await CoreDataStack.shared.performBackgroundTask { context in
+                Self.seedProducts(in: context)
+                Self.seedStores(in: context)
+                Self.seedBaristas(in: context)
+                try context.save()
+            }
+            await MainActor.run {
+                UserDefaults.standard.set(true, forKey: "mc_seeded")
+            }
+        } catch {
+            print("[DataSeeder] Seed failed: \(error) — will retry on next launch")
+        }
     }
 
     static func seedProducts(in context: NSManagedObjectContext) {
