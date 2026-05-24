@@ -1,0 +1,78 @@
+name: MagicCoffee
+options:
+  bundleIdPrefix: com.baha
+  deploymentTarget:
+    iOS: "16.0"
+  defaultConfig: Debug
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: 5.9
+    IPHONEOS_DEPLOYMENT_TARGET: 16.0
+
+targets:
+  MagicCoffee:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: MagicCoffee
+        excludes:
+          - "**/*.md"
+          - "**/.gitkeep"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.baha.magiccoffee
+        INFOPLIST_FILE: MagicCoffee/Resources/Info.plist
+        DEVELOPMENT_TEAM: ""
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: "1"
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 1.0
+        SWIFT_VERSION: 5.9
+        GENERATE_INFOPLIST_FILE: NO
+        CODE_SIGNING_REQUIRED: NO
+        CODE_SIGNING_ALLOWED: NO
+    coreDataModels:
+      - MagicCoffee/Core/CoreData/MagicCoffee.xcdatamodeld
+    info:
+      path: MagicCoffee/Resources/Info.plist
+      properties:
+        CFBundleName: Magic Coffee
+        CFBundleDisplayName: Magic Coffee
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: Default Configuration
+                UISceneDelegateClassName: "$(PRODUCT_MODULE_NAME).SceneDelegate"
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+
+  MagicCoffeeTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - MagicCoffeeTests
+    dependencies:
+      - target: MagicCoffee
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.baha.magiccoffeetests
+        SWIFT_VERSION: 5.9
+
+  MagicCoffeeUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - MagicCoffeeUITests
+    dependencies:
+      - target: MagicCoffee
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.baha.magiccoffee.uitests
+        SWIFT_VERSION: 5.9

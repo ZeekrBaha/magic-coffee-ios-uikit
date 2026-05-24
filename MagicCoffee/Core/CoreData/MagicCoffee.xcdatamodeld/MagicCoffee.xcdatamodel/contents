@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24A344" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDUser" representedClassName="CDUser" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="email" attributeType="String" defaultValueString=""/>
+        <attribute name="passwordHash" attributeType="String" defaultValueString=""/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="isActive" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDOrder" inverseName="user" inverseEntity="CDOrder"/>
+        <relationship name="loyaltyCard" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CDLoyaltyCard" inverseName="user" inverseEntity="CDLoyaltyCard"/>
+        <relationship name="rewardHistory" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDRewardHistory" inverseName="user" inverseEntity="CDRewardHistory"/>
+    </entity>
+    <entity name="CDStore" representedClassName="CDStore" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="address" attributeType="String" defaultValueString=""/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDProduct" representedClassName="CDProduct" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="imagePath" attributeType="String" defaultValueString=""/>
+        <attribute name="price" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="sortOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDBarista" representedClassName="CDBarista" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="specialty" optional="YES" attributeType="String"/>
+        <attribute name="isAvailable" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="imagePath" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CDOrder" representedClassName="CDOrder" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="status" attributeType="String" defaultValueString="ongoing"/>
+        <attribute name="totalAmount" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="scheduledTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="pickupCode" optional="YES" attributeType="String"/>
+        <attribute name="isOnsite" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser" inverseName="orders" inverseEntity="CDUser"/>
+        <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDStore"/>
+        <relationship name="barista" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDBarista"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDOrderItem" inverseName="order" inverseEntity="CDOrderItem"/>
+    </entity>
+    <entity name="CDOrderItem" representedClassName="CDOrderItem" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="quantity" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="price" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="milkType" optional="YES" attributeType="String"/>
+        <attribute name="syrupType" optional="YES" attributeType="String"/>
+        <attribute name="additives" optional="YES" attributeType="String"/>
+        <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDOrder" inverseName="items" inverseEntity="CDOrder"/>
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDProduct"/>
+    </entity>
+    <entity name="CDLoyaltyCard" representedClassName="CDLoyaltyCard" syncable="YES" codeGenerationType="class">
+        <attribute name="stamps" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="maxStamps" attributeType="Integer 16" defaultValueString="8" usesScalarValueType="YES"/>
+        <attribute name="totalPoints" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser" inverseName="loyaltyCard" inverseEntity="CDUser"/>
+    </entity>
+    <entity name="CDRewardHistory" representedClassName="CDRewardHistory" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="points" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="productName" attributeType="String" defaultValueString=""/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser" inverseName="rewardHistory" inverseEntity="CDUser"/>
+    </entity>
+</model>
