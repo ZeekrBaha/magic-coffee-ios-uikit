@@ -24,29 +24,48 @@ final class AppCoordinator: Coordinator {
         let hasUser = (try? context.fetch(request).first) != nil
 
         if !hasUser {
-            showAuthPlaceholder()
+            showAuth()
         } else if !UserDefaults.standard.bool(forKey: "mc_store_selected") {
-            showStoreSelectionPlaceholder()
+            showStoreSelection()
         } else {
-            showMainTabPlaceholder()
+            showMainTab()
         }
     }
 
-    private func showAuthPlaceholder() {
-        let vc = UIViewController()
-        vc.view.backgroundColor = .mcPrimary
-        navigationController.setViewControllers([vc], animated: false)
+    private func showAuth() {
+        let authCoordinator = AuthCoordinator(navigationController: navigationController)
+        authCoordinator.parent = self
+        authCoordinator.delegate = self
+        addChild(authCoordinator)
+        authCoordinator.start()
     }
 
-    private func showStoreSelectionPlaceholder() {
-        let vc = UIViewController()
-        vc.view.backgroundColor = UIColor(hex: "#1C2B33")
-        navigationController.setViewControllers([vc], animated: false)
+    private func showStoreSelection() {
+        let storeCoordinator = StoreSelectionCoordinator(navigationController: navigationController)
+        storeCoordinator.parent = self
+        storeCoordinator.delegate = self
+        addChild(storeCoordinator)
+        storeCoordinator.start()
     }
 
-    private func showMainTabPlaceholder() {
-        let vc = UIViewController()
-        vc.view.backgroundColor = .mcSurface
-        navigationController.setViewControllers([vc], animated: false)
+    private func showMainTab() {
+        let tabCoordinator = MainTabCoordinator(navigationController: navigationController)
+        tabCoordinator.parent = self
+        addChild(tabCoordinator)
+        tabCoordinator.start()
+    }
+}
+
+extension AppCoordinator: AuthCoordinatorDelegate {
+    func authCoordinatorDidFinish(_ coordinator: AuthCoordinator) {
+        removeChild(coordinator)
+        showStoreSelection()
+    }
+}
+
+extension AppCoordinator: StoreSelectionCoordinatorDelegate {
+    func storeSelectionCoordinatorDidFinish(_ coordinator: StoreSelectionCoordinator) {
+        removeChild(coordinator)
+        showMainTab()
     }
 }

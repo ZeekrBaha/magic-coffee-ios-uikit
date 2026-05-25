@@ -3,14 +3,23 @@ import CoreData
 
 /// Shared helper for building isolated in-memory Core Data stacks in tests.
 ///
-/// Note: Core Data may log benign "Failed to find a unique match for an
-/// NSEntityDescription" warnings when a test container coexists with the app's
-/// own model inside the test host. The warnings are cosmetic — the in-memory
-/// store and the generated `NSManagedObject` subclasses behave correctly.
+/// Uses a single shared NSManagedObjectModel so NSManagedObject subclasses are
+/// registered only once. Loading a fresh model per container causes Core Data to
+/// register the same subclasses multiple times, which triggers "Multiple
+/// NSEntityDescriptions" warnings and can crash when entity lookup is ambiguous.
 enum TestCoreDataSupport {
-    /// Builds an in-memory container for the MagicCoffee model.
+
+    /// Builds an isolated in-memory container that reuses the process-wide single model.
+    ///
+    /// Reusing `CoreDataStack.managedObjectModel` (rather than loading a fresh model
+    /// here) guarantees the test host app's default stack and every test container all
+    /// share one NSManagedObjectModel, so `+entity` never has multiple models to
+    /// disambiguate between.
     static func makeInMemoryContainer() -> NSPersistentContainer {
-        let container = NSPersistentContainer(name: "MagicCoffee")
+        let container = NSPersistentContainer(
+            name: "MagicCoffee",
+            managedObjectModel: CoreDataStack.managedObjectModel
+        )
         let description = NSPersistentStoreDescription()
         description.type = NSInMemoryStoreType
         description.url = URL(fileURLWithPath: "/dev/null")

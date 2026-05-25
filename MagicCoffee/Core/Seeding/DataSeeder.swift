@@ -14,7 +14,7 @@ final class DataSeeder {
                 UserDefaults.standard.set(true, forKey: "mc_seeded")
             }
         } catch {
-            print("[DataSeeder] Seed failed: \(error) — will retry on next launch")
+            // Seeding is best-effort: the `mc_seeded` flag stays unset, so it retries next launch.
         }
     }
 
