@@ -19,6 +19,8 @@ final class DataSeeder {
     }
 
     static func seedProducts(in context: NSManagedObjectContext) {
+        // Idempotent: never duplicate if products already exist.
+        guard ((try? context.count(for: CDProduct.fetchRequest())) ?? 0) == 0 else { return }
         let items: [(name: String, path: String, price: Double, sort: Int16)] = [
             ("Americano",  "products/americano",  3.0, 0),
             ("Cappuccino", "products/cappuccino", 3.0, 1),
@@ -38,6 +40,8 @@ final class DataSeeder {
     }
 
     static func seedStores(in context: NSManagedObjectContext) {
+        // Idempotent: never duplicate if stores already exist.
+        guard ((try? context.count(for: CDStore.fetchRequest())) ?? 0) == 0 else { return }
         let stores: [(name: String, address: String, lat: Double, lon: Double)] = [
             ("Bradford 804 914", "Bradford BD1 914", 53.7946, -1.7560),
             ("Bradford 804 7SJ", "Bradford BD4 7SJ", 53.7956, -1.7570),
@@ -54,6 +58,8 @@ final class DataSeeder {
     }
 
     static func seedBaristas(in context: NSManagedObjectContext) {
+        // Idempotent: never duplicate if baristas already exist.
+        guard ((try? context.count(for: CDBarista.fetchRequest())) ?? 0) == 0 else { return }
         let baristas: [(name: String, specialty: String, available: Bool)] = [
             ("Victor", "Top Aristica", true),
             ("Andrey", "Espresso",     true),

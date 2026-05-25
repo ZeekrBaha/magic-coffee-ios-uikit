@@ -51,6 +51,23 @@ final class DataSeederTests: XCTestCase {
         XCTAssertEqual(try count("CDBarista"), 3)
     }
 
+    func testSeedingTwiceDoesNotDuplicate() throws {
+        // Seeding is idempotent: a second pass must not create duplicates.
+        DataSeeder.seedProducts(in: context)
+        DataSeeder.seedStores(in: context)
+        DataSeeder.seedBaristas(in: context)
+        try context.save()
+
+        DataSeeder.seedProducts(in: context)
+        DataSeeder.seedStores(in: context)
+        DataSeeder.seedBaristas(in: context)
+        try context.save()
+
+        XCTAssertEqual(try count("CDProduct"), 6)
+        XCTAssertEqual(try count("CDStore"), 3)
+        XCTAssertEqual(try count("CDBarista"), 3)
+    }
+
     func testProductSortOrdersAreSequential() throws {
         DataSeeder.seedProducts(in: context)
         try context.save()
