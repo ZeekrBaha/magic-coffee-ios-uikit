@@ -142,15 +142,17 @@ final class ScreenshotCaptureTests: XCTestCase {
         sleep(1); snap("18_payment"); waitTap(app.buttons["payment_pay_button"])
 
         _ = app.staticTexts["confirmation_ordered_label"].waitForExistence(timeout: 8)
-        snap("19_confirmation")
 
-        // Review modal (auto-appears ~1s after confirmation's viewDidLoad)
+        // The review modal auto-appears ~1s later. Capture it first, then dismiss it so
+        // the confirmation screen can be captured cleanly (without the modal overlay).
         sleep(2)
         if app.staticTexts["review_title"].waitForExistence(timeout: 8)
             || app.buttons["review_nothanks_button"].waitForExistence(timeout: 2) {
             snap("20_review_modal")
             waitTap(app.buttons["review_nothanks_button"], 3)
         }
+        sleep(1)
+        snap("19_confirmation")
         waitTap(app.buttons["confirmation_back_button"], 4)
         _ = app.collectionViews["catalog_collection_view"].waitForExistence(timeout: 6)
 

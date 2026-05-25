@@ -4,19 +4,41 @@ final class SplashViewController: UIViewController {
 
     private let viewModel: SplashViewModel
 
+    /// Dark teal header card holding the brand mark (matches the Figma design).
+    private let cardView: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = .mcPrimary
+        v.layer.cornerRadius = 24
+        return v
+    }()
+
     private let logoView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFit
-        iv.tintColor = .mcPrimary
-        // Prefer a real asset if it exists, otherwise fall back to an SF Symbol.
-        if let asset = UIImage(named: "magic_coffee_logo") {
+        // The Magic Coffee tree mark (white, with the tree as a transparent cutout
+        // so the dark card shows through). Falls back to an SF Symbol if missing.
+        if let asset = UIImage(named: "mc_logo") {
             iv.image = asset
         } else {
             let config = UIImage.SymbolConfiguration(pointSize: 80, weight: .regular)
             iv.image = UIImage(systemName: "leaf.fill", withConfiguration: config)
+            iv.tintColor = .white
         }
         return iv
+    }()
+
+    private let wordmarkLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Magic Coffee"
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont(name: "BradleyHandITCTT-Bold", size: 38)
+            ?? UIFont(name: "Bradley Hand", size: 38)
+            ?? .systemFont(ofSize: 34, weight: .bold)
+        return label
     }()
 
     private let titleLabel: UILabel = {
@@ -51,7 +73,8 @@ final class SplashViewController: UIViewController {
             dot.translatesAutoresizingMaskIntoConstraints = false
             dot.layer.cornerRadius = 4
             dot.backgroundColor = i == 0 ? .mcPrimary : .mcTextSecondary
-            dot.widthAnchor.constraint(equalToConstant: 8).isActive = true
+            // The active (first) dot is an elongated pill.
+            dot.widthAnchor.constraint(equalToConstant: i == 0 ? 24 : 8).isActive = true
             dot.heightAnchor.constraint(equalToConstant: 8).isActive = true
             stack.addArrangedSubview(dot)
         }
@@ -79,7 +102,9 @@ final class SplashViewController: UIViewController {
     }
 
     private func setupLayout() {
-        view.addSubview(logoView)
+        view.addSubview(cardView)
+        cardView.addSubview(logoView)
+        cardView.addSubview(wordmarkLabel)
         view.addSubview(titleLabel)
         view.addSubview(subtitleLabel)
         view.addSubview(pageDots)
@@ -87,13 +112,23 @@ final class SplashViewController: UIViewController {
 
         let safe = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            logoView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoView.topAnchor.constraint(equalTo: safe.topAnchor, constant: 100),
-            logoView.widthAnchor.constraint(equalToConstant: 120),
-            logoView.heightAnchor.constraint(equalToConstant: 120),
+            cardView.topAnchor.constraint(equalTo: safe.topAnchor, constant: 16),
+            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            cardView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.42),
+
+            logoView.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
+            logoView.centerYAnchor.constraint(equalTo: cardView.centerYAnchor, constant: -24),
+            logoView.widthAnchor.constraint(equalToConstant: 150),
+            logoView.heightAnchor.constraint(equalToConstant: 150),
+
+            wordmarkLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
+            wordmarkLabel.topAnchor.constraint(equalTo: logoView.bottomAnchor, constant: 4),
+            wordmarkLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 24),
+            wordmarkLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -24),
 
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: logoView.bottomAnchor, constant: 48),
+            titleLabel.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 48),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
 
@@ -104,7 +139,7 @@ final class SplashViewController: UIViewController {
             pageDots.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -32),
 
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nextButton.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -48)
+            nextButton.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -48),
         ])
     }
 
