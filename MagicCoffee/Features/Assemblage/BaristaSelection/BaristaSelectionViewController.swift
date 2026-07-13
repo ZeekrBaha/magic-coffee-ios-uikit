@@ -73,6 +73,7 @@ extension BaristaSelectionViewController: UITableViewDataSource, UITableViewDele
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // swiftlint:disable:next force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: BaristaCell.reuseID, for: indexPath) as! BaristaCell
         let barista = viewModel.baristas[indexPath.row]
         cell.configure(with: barista)

@@ -106,6 +106,7 @@ extension StoreListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // swiftlint:disable:next force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: StoreCell.reuseID, for: indexPath) as! StoreCell
         let store = viewModel.stores[indexPath.row]
         cell.configure(store: store, rowIndex: indexPath.row) { [weak self] in

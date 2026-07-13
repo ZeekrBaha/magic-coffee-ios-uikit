@@ -1,0 +1,9 @@
+disabled_rules:
+  - trailing_comma
+
+identifier_name:
+  min_length: 1
+
+large_tuple:
+  warning: 4
+  error: 5

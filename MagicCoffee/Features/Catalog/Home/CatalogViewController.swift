@@ -125,6 +125,7 @@ extension CatalogViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: ProductCell.reuseID,
             for: indexPath
+            // swiftlint:disable:next force_cast
         ) as! ProductCell
         let product = viewModel.products[indexPath.item]
         cell.configure(with: product, index: indexPath.item)

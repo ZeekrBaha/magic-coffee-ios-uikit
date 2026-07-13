@@ -124,6 +124,7 @@ extension PrePaymentListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: PrePaymentItemCell.reuseID,
             for: indexPath
+            // swiftlint:disable:next force_cast
         ) as! PrePaymentItemCell
         cell.configure(with: viewModel.itemRows[indexPath.row])
         return cell

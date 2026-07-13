@@ -303,6 +303,7 @@ extension RewardsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // swiftlint:disable:next force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: RewardHistoryCell.reuseID, for: indexPath) as! RewardHistoryCell
         cell.configure(with: viewModel.history[indexPath.row])
         return cell

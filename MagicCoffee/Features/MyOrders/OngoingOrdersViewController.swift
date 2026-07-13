@@ -101,6 +101,7 @@ extension OngoingOrdersViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: OrderCell.reuseID,
             for: indexPath
+            // swiftlint:disable:next force_cast
         ) as! OrderCell
         cell.configure(with: viewModel.orders[indexPath.row], badgeStyle: .ongoing)
         return cell

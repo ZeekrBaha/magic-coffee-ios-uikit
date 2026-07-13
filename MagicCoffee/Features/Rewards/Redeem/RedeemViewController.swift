@@ -103,6 +103,7 @@ extension RedeemViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: RedeemProductCell.reuseID,
             for: indexPath
+            // swiftlint:disable:next force_cast
         ) as! RedeemProductCell
         let product = viewModel.products[indexPath.item]
         cell.configure(with: product, index: indexPath.item)

@@ -126,6 +126,7 @@ extension AssemblageSummaryViewController: UITableViewDataSource, UITableViewDel
             cell.selectionStyle = .none
             return cell
         case .items:
+            // swiftlint:disable:next force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseID, for: indexPath) as! ItemCell
             cell.configure(with: itemRows[indexPath.row])
             return cell
