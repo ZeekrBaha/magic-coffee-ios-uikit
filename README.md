@@ -318,7 +318,9 @@ xcodebuild test -scheme MagicCoffee \
   | grep -E "Executed [0-9]+ test|error:|BUILD (SUCCEEDED|FAILED)"
 ```
 
-All **79 tests pass (73 unit + 6 UI).**
+All **82 tests pass (74 unit + 8 UI)** — verified with a real `xcodebuild test` run on a
+booted iOS Simulator, and enforced in CI (`.github/workflows/ci.yml`: `xcodegen generate` →
+`swiftlint` → `xcodebuild test`, run fresh from `project.yml` on every push/PR).
 
 ---
 
@@ -329,4 +331,17 @@ All **79 tests pass (73 unit + 6 UI).**
 - **Local-only auth** — passwords are SHA-256 hashed into `CDUser.passwordHash`; the OTP screen accepts the hardcoded code **`1234`** (no SMS).
 - **Payment is UI-only** — “Pay Now” calls `OrderService.placeOrder()` locally; there is no real payment SDK.
 - **Coordinators own navigation** — view models talk to their coordinator through the weak `coordinator` reference on `BaseViewModel`.
-- Every new `.swift` file must be registered manually in `MagicCoffee.xcodeproj/project.pbxproj` (no XcodeGen).
+- **Project is XcodeGen-generated** — `MagicCoffee.xcodeproj` is generated from `project.yml` (`xcodegen generate`, tracked in git for convenience); new `.swift` files under `MagicCoffee/` are picked up automatically on the next `xcodegen generate`, nothing to register manually.
+
+## Limitations / Next steps
+
+- **Unsalted single-round SHA-256 password hashing** (`AuthService.swift`) — fine for an
+  offline local-only demo with zero network surface, but not a production password scheme
+  (no salt, no KDF). Would need to change before any real backend appears.
+- **OTP verification accepts a hardcoded code (`1234`)** — no real SMS/OTP delivery; this
+  is a UI-flow demo, not a real verification system.
+- **All data is local Core Data** — no sync across devices, no backend, no real payment
+  processing ("Pay Now" is UI-only).
+- **7-commit history** — features landed in large increments rather than small reviewable
+  ones; no red/green TDD evidence recoverable from git history, though the test suite
+  itself (82 tests, service + view-model layer) is real and passing.
